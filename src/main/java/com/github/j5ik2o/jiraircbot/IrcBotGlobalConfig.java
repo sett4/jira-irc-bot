@@ -21,6 +21,17 @@ public final class IrcBotGlobalConfig {
 	@XmlElement
 	private String ircEncoding;
 	
+	@XmlElement
+	private String ircUsername;
+	
+	public String getIrcUsername() {
+		return ircUsername;
+	}
+
+	public void setIrcUsername(String ircUsername) {
+		this.ircUsername = ircUsername;
+	}
+
 	public String getIrcEncoding() {
 		return ircEncoding;
 	}

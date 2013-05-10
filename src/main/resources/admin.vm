@@ -25,6 +25,10 @@
         <input type="text" id="ircEncoding" name="ircEncoding" class="text">
       </div>
       <div>
+        <label for="ircUsername">$i18n.getText("jiraircbot.admin.ircUsername.label")</label>
+        <input type="text" id="ircUsername" name="ircUsername" class="text">
+      </div>
+      <div>
         <input id="submit" type="submit" value="$i18n.getText("jiraircbot.admin.save.label")" class="button">
       </div>
     </form>

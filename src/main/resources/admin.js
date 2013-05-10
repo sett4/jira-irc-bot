@@ -14,6 +14,7 @@ AJS.toInit(function() {
                 AJS.$("#ircServerName").attr("value", config.ircServerName);
                 AJS.$("#ircServerPort").attr("value", config.ircServerPort);
                 AJS.$("#ircEncoding").attr("value", config.ircEncoding);
+                AJS.$("#ircUsername").attr("value", config.ircUsername);
             }
         });
     }
@@ -24,7 +25,7 @@ AJS.toInit(function() {
             url: baseUrl + "/rest/jira-irc-bot/1.0/globalConfig",
             type: "PUT",
             contentType: "application/json",
-            data: '{ "enable": "' + enable + '", "ircServerName": "' + AJS.$("#ircServerName").attr("value") + '", "ircServerPort": ' +  AJS.$("#ircServerPort").attr("value") + ', "ircEncoding": "' + AJS.$("#ircEncoding").attr("value") + '" }',
+            data: '{ "enable": "' + enable + '", "ircServerName": "' + AJS.$("#ircServerName").attr("value") + '", "ircServerPort": ' +  AJS.$("#ircServerPort").attr("value") + ', "ircEncoding": "' + AJS.$("#ircEncoding").attr("value") + '", "ircUsername": "'+ AJS.$("#ircUsername").attr("value") +'" }',
             processData: false
         });
     }
@@ -53,5 +54,10 @@ AJS.toInit(function() {
     AJS.$("#ircServerPort").blur(function(){
         submitCheck();
     });
-
+    AJS.$("#ircEncoding").blur(function(){
+        submitCheck();
+    });
+    AJS.$("#ircUsername").blur(function(){
+        submitCheck();
+    });
 });

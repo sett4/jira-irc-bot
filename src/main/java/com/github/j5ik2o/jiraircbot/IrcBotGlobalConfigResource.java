@@ -72,6 +72,11 @@ public class IrcBotGlobalConfigResource {
 						config.setIrcEncoding((String) settings
 								.get(IrcBotGlobalConfig.class.getName()
 										+ ".ircEncoding"));
+						
+						config.setIrcUsername((String) settings
+								.get(IrcBotGlobalConfig.class.getName()
+										+ ".ircUsername"));
+						
 						return config;
 					}
 				})).build();
@@ -102,6 +107,8 @@ public class IrcBotGlobalConfigResource {
 						Integer.toString(config.getIrcServerPort()));
 				pluginSettings.put(IrcBotGlobalConfig.class.getName()
 						+ ".ircEncoding", config.getIrcEncoding());
+				pluginSettings.put(IrcBotGlobalConfig.class.getName()
+						+ ".ircUsername", config.getIrcUsername());
 				return null;
 			}
 		});

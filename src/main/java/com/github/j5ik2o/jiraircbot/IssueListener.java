@@ -43,12 +43,7 @@ public class IssueListener implements InitializingBean, DisposableBean {
 
 	private final PluginSettingsFactory pluginSettingsFactory;
 
-	private final PircBot pircBot = new PircBot() {
-		{
-//			setName("jira-irc-bot-" + UUID.randomUUID().toString());
-			setName("jira-irc-bot");
-		}
-	};
+	private final PircBot pircBot;
 
 	private final VelocityRequestContextFactory velocityRequestContextFactory;
 
@@ -70,6 +65,13 @@ public class IssueListener implements InitializingBean, DisposableBean {
 		this.pluginSettingsFactory = pluginSettingsFactory;
 		this.velocityRequestContextFactory = velocityRequestContextFactory;
 		this.projectManager = projectManager;
+		
+		this.pircBot = new PircBot() {
+			{
+				PluginSettings pluginSettings = IssueListener.this.pluginSettingsFactory.createGlobalSettings();
+				setName(getIrcUsername(pluginSettings));
+			}
+		};
 	}
 
 	/**
@@ -438,6 +440,16 @@ public class IssueListener implements InitializingBean, DisposableBean {
 	private String getIrcEncoding(PluginSettings settings) {
 		return (String) settings.get(IrcBotGlobalConfig.class.getName()
 				+ ".ircEncoding");
+	}
+
+	private String getIrcUsername(PluginSettings settings) {
+		String username = (String) settings.get(IrcBotGlobalConfig.class.getName()
+				+ ".ircUsername");
+		if (username == null || username.length() == 0) {
+			username = "jira-irc-bot";
+		}
+
+		return username;
 	}
 
 	private void autoConnect() throws NickAlreadyInUseException, IOException,
